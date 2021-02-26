@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "7e4064ba-c8be-4c63-b40f-5088127975ff",
+		"name": "Academic Class Registration Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Course",
+			"item": [
+				{
+					"name": "Create Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let courses = pm.response.json();\r",
+									"pm.globals.set('newlyCreatedCourseId', courses[0].courseId);\r",
+									"pm.globals.set('newlyCreatedCourseIdForDelete', courses[2].courseId);\r",
+									"\r",
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"courseName\": \"Course 1\"\r\n    },\r\n    {\r\n        \"courseName\": \"Course 2\"\r\n    },\r\n    {\r\n        \"courseName\": \"Course 3\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}courses",
+							"host": [
+								"{{baseUrl}}courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.globals.unset('newlyCreatedCourseIdForDelete');\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"courseName\": \"Course 1\"\r\n    },\r\n    {\r\n        \"courseName\": \"Course 2\"\r\n    },\r\n    {\r\n        \"courseName\": \"Course 3\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}courses/{{newlyCreatedCourseIdForDelete}}",
+							"host": [
+								"{{baseUrl}}courses"
+							],
+							"path": [
+								"{{newlyCreatedCourseIdForDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}courses",
+							"host": [
+								"{{baseUrl}}courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ger A Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}courses/{{newlyCreatedCourseId}}",
+							"host": [
+								"{{baseUrl}}courses"
+							],
+							"path": [
+								"{{newlyCreatedCourseId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "Create Professors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let professors = pm.response.json();\r",
+									"pm.globals.set('newlyCreatedProfessorId', professors[0].professorId);\r",
+									"pm.globals.set('newlyCreatedProfessorIdForDelete', professors[2].professorId);\r",
+									"\r",
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"firstName\": \"MyFirstName1\",\r\n        \"lastName\": \"lastName1\"\r\n    },\r\n    {\r\n        \"firstName\": \"MyFirstName2\",\r\n        \"lastName\": \"lastName2\"\r\n    },\r\n    {\r\n        \"firstName\": \"MyFirstName3\",\r\n        \"lastName\": \"lastName3\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}professors",
+							"host": [
+								"{{baseUrl}}professors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Professor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}professors",
+							"host": [
+								"{{baseUrl}}professors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Professor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.globals.unset('newlyCreatedProfessorIdForDelete');\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}professors/{{newlyCreatedProfessorIdForDelete}}",
+							"host": [
+								"{{baseUrl}}professors"
+							],
+							"path": [
+								"{{newlyCreatedProfessorIdForDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ger A Professor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}professors/{{newlyCreatedProfessorId}}",
+							"host": [
+								"{{baseUrl}}professors"
+							],
+							"path": [
+								"{{newlyCreatedProfessorId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Create Students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let students = pm.response.json();\r",
+									"pm.globals.set('newlyCreatedStudentId', students[0].studentId);\r",
+									"pm.globals.set('newlyCreatedStudentIdForDelete', students[2].studentId);\r",
+									"\r",
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"firstName\": \"MyStudentFirstName1\",\r\n        \"lastName\": \"StudentlastName1\"\r\n    },\r\n    {\r\n        \"firstName\": \"StudentMyFirstName2\",\r\n        \"lastName\": \"StudentlastName2\"\r\n    },\r\n    {\r\n        \"firstName\": \"StudentMyFirstName3\",\r\n        \"lastName\": \"StudentlastName3\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}students",
+							"host": [
+								"{{baseUrl}}students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}students",
+							"host": [
+								"{{baseUrl}}students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.globals.unset('newlyCreatedStudentIdForDelete');\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}students/{{newlyCreatedStudentIdForDelete}}",
+							"host": [
+								"{{baseUrl}}students"
+							],
+							"path": [
+								"{{newlyCreatedStudentIdForDelete}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ger A Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}students/{{newlyCreatedStudentId}}",
+							"host": [
+								"{{baseUrl}}students"
+							],
+							"path": [
+								"{{newlyCreatedStudentId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course Association",
+			"item": [
+				{
+					"name": "Assign Student To Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseId\" : {{newlyCreatedCourseId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}students/{{newlyCreatedStudentId}}/courses",
+							"host": [
+								"{{baseUrl}}students"
+							],
+							"path": [
+								"{{newlyCreatedStudentId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Professors To Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseId\" : {{newlyCreatedCourseId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}professors/{{newlyCreatedProfessorId}}/courses",
+							"host": [
+								"{{baseUrl}}professors"
+							],
+							"path": [
+								"{{newlyCreatedProfessorId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course For Professor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}professors/{{newlyCreatedProfessorId}}/courses",
+							"host": [
+								"{{baseUrl}}professors"
+							],
+							"path": [
+								"{{newlyCreatedProfessorId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course For Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}students/{{newlyCreatedStudentId}}/courses",
+							"host": [
+								"{{baseUrl}}students"
+							],
+							"path": [
+								"{{newlyCreatedStudentId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Student From Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseId\" : {{newlyCreatedCourseId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}students/{{newlyCreatedStudentId}}/courses",
+							"host": [
+								"{{baseUrl}}students"
+							],
+							"path": [
+								"{{newlyCreatedStudentId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Professors From Course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check Response Status', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Remove environment variables\r",
+									"pm.globals.unset('newlyCreatedStudentId');\r",
+									"pm.globals.unset('newlyCreatedProfessorId');\r",
+									"pm.globals.unset('newlyCreatedProfessorId');\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseId\" : {{newlyCreatedCourseId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}professors/{{newlyCreatedProfessorId}}/courses",
+							"host": [
+								"{{baseUrl}}professors"
+							],
+							"path": [
+								"{{newlyCreatedProfessorId}}",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
